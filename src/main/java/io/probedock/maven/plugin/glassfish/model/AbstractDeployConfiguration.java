@@ -6,7 +6,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * Define the different options that are available to deploy/redeploy commands
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public abstract class AbstractDeployConfiguration {
 	@Parameter(required = true)

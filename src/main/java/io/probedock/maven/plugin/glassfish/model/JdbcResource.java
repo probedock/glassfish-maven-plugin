@@ -7,7 +7,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * A JDBC Resource configuration. See the ASADMIN help to get more information on
  * the different configurable values.
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class JdbcResource {
 	@Parameter(required = true)

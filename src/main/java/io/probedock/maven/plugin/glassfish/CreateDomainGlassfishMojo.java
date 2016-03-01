@@ -13,7 +13,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 /**
  * Create a new domain in a local or remote Glassfish instance
  *
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 @Mojo(name = "create-domain", defaultPhase = LifecyclePhase.PRE_INTEGRATION_TEST, requiresProject = true)
 public class CreateDomainGlassfishMojo extends GlassfishMojo {

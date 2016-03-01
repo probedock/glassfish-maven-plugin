@@ -11,7 +11,7 @@ import static io.probedock.maven.plugin.glassfish.command.argument.CommandArgume
  * Command argument factory. Serves to build the different arguments used in the
  * commnds.
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class CommandArgumentFactory {
 	/**

@@ -6,7 +6,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * Represents an admin object and configuration required for its creation.
  * 
- * @author Valentin Delaye <valentin.delaye@novaccess.ch>
+ * @author Valentin Delaye valentin.delaye@novaccess.ch
  */
 public class AdminObject {
 

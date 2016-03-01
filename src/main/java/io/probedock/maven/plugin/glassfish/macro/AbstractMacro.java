@@ -10,7 +10,7 @@ import org.apache.maven.plugin.MojoFailureException;
 /**
  * Base macro to run grouped commands
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public abstract class AbstractMacro {
 	/**
@@ -36,8 +36,8 @@ public abstract class AbstractMacro {
 	 * Execute the macro
 	 * 
 	 * @param executor The executor to run the commands of the macro
-	 * @throws MojoExecutionException
-	 * @throws MojoFailureException 
+	 * @throws MojoExecutionException When a command is not executable
+	 * @throws MojoFailureException When a command has failed
 	 */
 	public void execute(CommandExecutor executor) throws MojoExecutionException, MojoFailureException {
 		// Run each macro command

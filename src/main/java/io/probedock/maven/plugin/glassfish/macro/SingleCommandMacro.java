@@ -7,7 +7,7 @@ import io.probedock.maven.plugin.glassfish.model.Configuration;
  * The single command macro can be used to just run one command in the macro mecanism that is
  * used everywhere to run the commands.
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class SingleCommandMacro extends AbstractMacro {
 	/**

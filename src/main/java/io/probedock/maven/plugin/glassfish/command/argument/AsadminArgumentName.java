@@ -5,7 +5,7 @@ import io.probedock.maven.plugin.glassfish.model.Configuration;
 /**
  * The ASADMIN argument names are the names allowed in the util arguments.
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public enum AsadminArgumentName implements IArgumentName {
 	/**

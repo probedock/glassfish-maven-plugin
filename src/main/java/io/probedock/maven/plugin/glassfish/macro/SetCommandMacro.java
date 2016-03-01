@@ -9,7 +9,7 @@ import io.probedock.maven.plugin.glassfish.model.Property;
 /**
  * This macro take care of creating set configuration for a domain
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class SetCommandMacro extends AbstractMacro {
 	/**

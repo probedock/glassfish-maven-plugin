@@ -6,7 +6,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * Configuration for a resource adapter.
  * 
- * @author Valentin Delaye <valentin.delaye@novaccess.ch>
+ * @author Valentin Delaye valentin.delaye@novaccess.ch
  */
 public class ResourceAdapter {
 	

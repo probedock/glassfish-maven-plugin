@@ -10,7 +10,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * The domain configuration
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class Domain {
 	/**

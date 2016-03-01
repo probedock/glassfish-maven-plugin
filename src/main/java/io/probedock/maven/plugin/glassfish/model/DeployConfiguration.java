@@ -5,7 +5,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * The deployment configuration of an application
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class DeployConfiguration extends AbstractDeployConfiguration {
 	@Parameter

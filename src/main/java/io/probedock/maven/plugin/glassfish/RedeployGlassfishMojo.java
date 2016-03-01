@@ -11,7 +11,7 @@ import io.probedock.maven.plugin.glassfish.model.RedeployConfiguration;
 /**
  * Re-deploy an application on a glassfish domain
  *
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 @Mojo(name = "redeploy", defaultPhase = LifecyclePhase.PRE_INTEGRATION_TEST, requiresProject = true)
 public class RedeployGlassfishMojo extends GlassfishMojo {

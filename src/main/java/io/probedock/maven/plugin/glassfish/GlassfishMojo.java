@@ -16,7 +16,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * Shared code for the different Maven Goals to manage a Glassfish 3/4 domain
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public abstract class GlassfishMojo extends AbstractMojo {
 	/**
@@ -40,8 +40,8 @@ public abstract class GlassfishMojo extends AbstractMojo {
 	 * First run a post configuration process to ensure that the configuration
 	 * is well done and complete the missing elements and/or defaults value
 	 * 
-	 * @throws MojoExecutionException
-	 * @throws MojoFailureException 
+	 * @throws MojoExecutionException When a command is not executable
+	 * @throws MojoFailureException When a command has failed
 	 */
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {

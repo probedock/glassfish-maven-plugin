@@ -13,7 +13,7 @@ import org.apache.maven.plugin.logging.Log;
 /**
  * The command executor has in charge to execute the command
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class CommandExecutor {
 	private static final int PROCESS_LOOP_SLEEP_MILLIS = 100;
@@ -52,8 +52,8 @@ public class CommandExecutor {
 	 * Execute the command retrieved from the command builder
 	 *
 	 * @param commandBuilder The command builder
-	 * @throws MojoExecutionException
-	 * @throws MojoFailureException
+	 * @throws MojoExecutionException When a command cannot be run
+	 * @throws MojoFailureException When a command produces an error on Glassfish
 	 */
 	public void execute(CommandBuilder commandBuilder) throws MojoExecutionException, MojoFailureException {
 		ProcessBuilder processBuilder = new ProcessBuilder();

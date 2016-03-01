@@ -7,7 +7,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * A JMS resource configuration. See the ASADMIN help to have more
  * information of the properties you can configure.
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class JmsResource {
 	@Parameter(required = true)

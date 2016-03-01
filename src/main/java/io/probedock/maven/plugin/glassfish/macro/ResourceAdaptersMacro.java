@@ -7,7 +7,7 @@ import io.probedock.maven.plugin.glassfish.model.ResourceAdapter;
 /**
  * The Resource Adapter macro manage the deployment of the different resource adapter for a domain.
  *  
- * @author Valentin Delaye <valentin.delaye@novaccess.ch>
+ * @author Valentin Delaye valentin.delaye@novaccess.ch
  */
 public class ResourceAdaptersMacro extends AbstractMacro {
 

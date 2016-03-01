@@ -12,7 +12,7 @@ import io.probedock.maven.plugin.glassfish.model.UndeployConfiguration;
 /**
  * Un-deploy an application on a glassfish domain
  *
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 @Mojo(name = "undeploy", defaultPhase = LifecyclePhase.PRE_INTEGRATION_TEST, requiresProject = true)
 public class UndeployGlassfishMojo extends GlassfishMojo {

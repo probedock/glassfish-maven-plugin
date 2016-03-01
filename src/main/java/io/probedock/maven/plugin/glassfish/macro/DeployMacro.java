@@ -7,7 +7,7 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
 /**
  * Deploy application macro take care of the requirements (like domain created and started)
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class DeployMacro extends AbstractMacro {
 	/**

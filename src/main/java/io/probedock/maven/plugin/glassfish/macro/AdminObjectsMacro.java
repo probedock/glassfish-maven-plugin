@@ -9,7 +9,7 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
 /**
  * The Admin Object macro manage the creation of the different admin object
  * 
- * @author Valentin Delaye <valentin.delaye@novaccess.ch>
+ * @author Valentin Delaye valentin.delaye@novaccess.ch
  */
 public class AdminObjectsMacro extends AbstractMacro {
 	/**

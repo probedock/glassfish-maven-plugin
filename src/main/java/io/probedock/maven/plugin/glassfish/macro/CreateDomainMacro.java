@@ -10,7 +10,7 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
  * 
  * Once the domain is created, the different resources (jdbc, jms...) are created.
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class CreateDomainMacro extends AbstractMacro {
 	/**

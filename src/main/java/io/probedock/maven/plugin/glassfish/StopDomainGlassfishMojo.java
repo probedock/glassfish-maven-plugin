@@ -10,7 +10,7 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
 /**
  * Maven goal to stop a Glassfish domain
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 @Mojo(name = "stop-domain", defaultPhase = LifecyclePhase.POST_INTEGRATION_TEST, requiresProject = true)
 public class StopDomainGlassfishMojo extends GlassfishMojo {

@@ -6,7 +6,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * Represents a connection factory configuration for its creation
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class ConnectionFactory {
 	/**

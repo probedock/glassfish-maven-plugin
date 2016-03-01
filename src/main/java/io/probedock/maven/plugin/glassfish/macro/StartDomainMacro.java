@@ -9,7 +9,7 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
  * of the domain to start (is it created, is it existed, ...) and the configuration of the
  * plugin.
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class StartDomainMacro extends AbstractMacro {
 	/**

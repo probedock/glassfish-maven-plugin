@@ -12,7 +12,7 @@ import io.probedock.maven.plugin.glassfish.macro.DeployMacro;
 /**
  * Deploy an application on a Glassfish domain
  *
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 @Mojo(name = "deploy", defaultPhase = LifecyclePhase.PRE_INTEGRATION_TEST, requiresProject = true)
 public class DeployGlassfishMojo extends GlassfishMojo {

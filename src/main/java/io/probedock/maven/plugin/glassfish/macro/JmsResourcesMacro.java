@@ -12,7 +12,7 @@ import io.probedock.maven.plugin.glassfish.model.Property;
 /**
  * The JMS Resource macro manage the creation of the different JMS resources (connection factories, resources, ...)
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class JmsResourcesMacro extends AbstractMacro {
 	/**

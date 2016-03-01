@@ -23,7 +23,7 @@ import io.probedock.maven.plugin.glassfish.model.ResourceAdapter;
 /**
  * The command factory create the ASADMIN commands
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class CommandFactory {
 	/**
@@ -550,7 +550,7 @@ public class CommandFactory {
 	 * Build a create-connector-resource command
 	 * 
 	 * @param configuration The configuration to enrich the command
-	 * @param connectorConnectionPool The connector resource
+	 * @param connectorResource The connector resource
 	 * @return The command
 	 */
 	public static CommandBuilder buildCreateConnectorConnectionPoolCommand(Configuration configuration, ConnectorResource connectorResource) {

@@ -9,7 +9,7 @@ import java.util.Set;
  * This argument class allows storing element that represent an argument
  * of the ASADMIN util
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  * @param <Name> The type of the argument (differentiate the argument of ASADMIN util and argument of sub-commands)
  */
 public class Argument<Name extends IArgumentName> {

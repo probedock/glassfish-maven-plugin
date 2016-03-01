@@ -9,7 +9,7 @@ import org.apache.maven.plugin.MojoFailureException;
  * Command wrapper to decorate the command with a descriptive text.
  * Add the possibility to create macro to run multiple commands in a batch way.
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class MacroCommand implements IMacroCommand {
 	/**

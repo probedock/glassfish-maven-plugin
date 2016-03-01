@@ -8,7 +8,7 @@ import org.apache.maven.plugin.MojoFailureException;
  * A macro macro command allows running a macro as it is a macro command. It serves
  * as a wrapper for the {@link AbstractMacro}
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class MacroMacroCommand implements IMacroCommand {
 	/**

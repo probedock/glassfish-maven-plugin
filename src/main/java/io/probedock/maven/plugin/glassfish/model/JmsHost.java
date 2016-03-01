@@ -6,7 +6,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * Represent the information for the hosts to add
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class JmsHost {
 	@Parameter(required = true)

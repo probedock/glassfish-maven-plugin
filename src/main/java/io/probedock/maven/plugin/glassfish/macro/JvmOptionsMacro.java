@@ -7,7 +7,7 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
 /**
  * The JVM Options macro allows creating and deleting JVM options
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class JvmOptionsMacro extends AbstractMacro {
 	/**

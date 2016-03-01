@@ -7,7 +7,7 @@ import org.apache.maven.plugin.logging.Log;
 /**
  * Configuration used to build and run the ASADMIN commands
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class Configuration {
 	/**

@@ -3,7 +3,7 @@ package io.probedock.maven.plugin.glassfish.command.argument;
 /**
  * Define what is a an argument name
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public interface IArgumentName {
 	/**

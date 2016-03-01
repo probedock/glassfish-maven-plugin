@@ -5,7 +5,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * The re-deployment configuration of an application
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class RedeployConfiguration extends AbstractDeployConfiguration {
 	@Parameter(required = true)

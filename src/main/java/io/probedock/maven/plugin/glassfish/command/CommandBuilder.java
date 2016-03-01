@@ -17,7 +17,7 @@ import java.util.List;
  * Once the builder has all the command lines stuff, you can retrieve the command line elements
  * ready to be used with a {@link ProcessBuilder}
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class CommandBuilder {
 	/**

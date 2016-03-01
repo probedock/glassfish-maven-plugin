@@ -8,7 +8,7 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
 /**
  * The JDBC Resource macro manage the creation of the different JDBC resources (connection pools, resources, ...)
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class JdbcResourcesMacro extends AbstractMacro {
 	/**

@@ -9,7 +9,7 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
 /**
  * The Connector Resource macro manage the creation of the different connector resource
  * 
- * @author Valentin Delaye <valentin.delaye@novaccess.ch>
+ * @author Valentin Delaye valentin.delaye@novaccess.ch
  */
 public class ConnectorResourceMacro extends AbstractMacro {
 	/**

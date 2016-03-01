@@ -3,7 +3,7 @@ package io.probedock.maven.plugin.glassfish.command;
 /**
  * List of the available command of ASADMIN util
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public enum CommandName {
 	

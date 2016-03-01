@@ -3,7 +3,7 @@ package io.probedock.maven.plugin.glassfish.command.argument;
 /**
  * The command argument names are the names allowed in the commands
  * 
- * @author Laurent Prevost, laurent.prevost@lotaris.com
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public enum CommandArgumentName implements IArgumentName {
 	/**
