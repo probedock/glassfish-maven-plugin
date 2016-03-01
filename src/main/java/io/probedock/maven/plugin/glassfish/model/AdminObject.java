@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -7,8 +8,9 @@ import org.apache.maven.plugins.annotations.Parameter;
  * Represents an admin object and configuration required for its creation.
  * 
  * @author Valentin Delaye valentin.delaye@novaccess.ch
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class AdminObject {
+public class AdminObject implements Comparable<AdminObject> {
 
 	/**
 	 * JNDI name of the admin object
@@ -26,7 +28,7 @@ public class AdminObject {
 	 * Type (class name) of the resource
 	 */
 	@Parameter(required = true)
-	private String restype;
+	private String resourceType;
 	
 	@Parameter
 	private Set<Property> properties;
@@ -48,11 +50,11 @@ public class AdminObject {
 	}
 
 	public String getRestype() {
-		return restype;
+		return resourceType;
 	}
 
 	public void setRestype(String restype) {
-		this.restype = restype;
+		this.resourceType = restype;
 	}
 
 	public Set<Property> getProperties() {
@@ -65,16 +67,15 @@ public class AdminObject {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		if(properties != null) {
-			for (Property p : properties) {
-				builder.append(p).append(", ");
-			}		
-		}
 		return 
 			"jndiName=" + jndiName + ", " +
 			"raname=" + raname + "," +
-			"restype=" + restype + "," +
-			"properties=" + builder.toString();
+			"resourceType=" + resourceType + "," +
+			"properties=" + Stringifier.toString(properties);
+	}
+
+	@Override
+	public int compareTo(AdminObject adminObjectToCompare) {
+		return jndiName.compareTo(adminObjectToCompare.jndiName);
 	}
 }

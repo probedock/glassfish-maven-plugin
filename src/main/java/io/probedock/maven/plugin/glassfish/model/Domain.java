@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
@@ -327,18 +328,13 @@ public class Domain {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		String props = null;
-		if(properties != null) {
-			for (Property p : properties) {
-				builder.append(p).append(", ");
-			}
-			props = builder.toString().replaceAll(", $", "");
-		}
 		return 
+			"adminObjects=" + Stringifier.toString(adminObjects) + ", " +
 			"createJvmOptions=" + createJvmOptions + ", " +
 			"adminPort=" + adminPort + ", " + 
-			"connectionFactories=" + connectionFactories + ", " +
+			"connectionFactories=" + Stringifier.toString(connectionFactories) + ", " +
+			"connectorConnectionPools=" + Stringifier.toString(connectorConnectionPools) + ", " +
+			"connectorResources=" + Stringifier.toString(connectorResources) + ", " +
 			"debuggerPort=" + debuggerPort + ", " +
 			"deleteJvmOptions=" + deleteJvmOption + ", " +
 			"directory=" + directory + ", " + 
@@ -348,13 +344,14 @@ public class Domain {
 			"iiopPort=" + iiopPort + ", " +
 			"iiopsPort=" + iiopsPort + ", " +
 			"iipsmPort=" + iiopsmPort + ", " +
-			"jdbcResources=" + jdbcResources + ", " +
+			"jdbcResources=" + Stringifier.toString(jdbcResources) + ", " +
 			"jmsPort=" + jmsPort + ", " + 
-			"jmsResources" + jmsResources + ", " + 
+			"jmsResources" + Stringifier.toString(jmsResources) + ", " + 
 			"jmxPort=" + jmxPort + ", " + 
-			"loggingAttributes=" + loggingAttributes + ", " +
+			"loggingAttributes=" + Stringifier.toString(loggingAttributes) + ", " +
 			"name=" + name + ", " + 
+			"resourceAdapaters=" + Stringifier.toString(resourceAdapters) + ", " + 
 			"reuse=" + reuse + ", " +
-			"properties=" + props;
+			"properties=" + Stringifier.toString(properties);
 	}
 }

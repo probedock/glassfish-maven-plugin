@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -7,8 +8,9 @@ import org.apache.maven.plugins.annotations.Parameter;
  * Represents a connector resource and configuration required for its creation.
  * 
  * @author Valentin Delaye valentin.delaye@novaccess.ch
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class ConnectorResource {
+public class ConnectorResource implements Comparable<ConnectorResource> {
 
 	/**
 	 * JNDI name of the connector resource
@@ -51,18 +53,15 @@ public class ConnectorResource {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		String props = null;
-		if(properties != null) {
-			for (Property p : properties) {
-				builder.append(p).append(", ");
-			}
-			props = builder.toString().replaceAll(", $", "");
-		}
 		return 
 			"jndiName=" + jndiName + ", " +
 			"poolName=" + poolName  + ", " +
-			"properties=" + props;
+			"properties=" + Stringifier.toString(properties);
+	}
+
+	@Override
+	public int compareTo(ConnectorResource connectorResourceToCompare) {
+		return jndiName.compareTo(connectorResourceToCompare.jndiName);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -9,7 +10,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * 
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class JdbcResource {
+public class JdbcResource implements Comparable<JdbcResource> {
 	@Parameter(required = true)
 	private String jndiName;
 	
@@ -361,9 +362,9 @@ public class JdbcResource {
 			+ "password=" + password + ", "
 			+ "ping=" + ping + ", pooling=" + pooling + ", "
 			+ "poolDescription=" + poolDescription + ", "
-			+ "poolProperties=" + poolProperties + ", "
+			+ "poolProperties=" + Stringifier.toString(poolProperties) + ", "
 			+ "poolResizeSize=" + poolResize + ", "
-			+ "properties=" + properties + ", "
+			+ "properties=" + Stringifier.toString(properties) + ", "
 			+ "sqlTraceListeners=" + sqlTraceListeners + ", "
 			+ "statementCacheSize=" + statementCacheSize + ", "
 			+ "statementLeakReclaim=" + statementLeakReclaim + ", "
@@ -379,5 +380,10 @@ public class JdbcResource {
 			+ "validationMethod=" + validationMethod + ", "
 			+ "validationTable=" + validationTable + ", "
 			+ "wrapJdbcObjects=" + wrapJdbcObjects;
+	}
+
+	@Override
+	public int compareTo(JdbcResource jdbcResourceToCompare) {
+		return jndiName.compareTo(jdbcResourceToCompare.jndiName);
 	}
 }

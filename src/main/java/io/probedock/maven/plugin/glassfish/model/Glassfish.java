@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.io.File;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -165,9 +166,9 @@ public class Glassfish {
 			"echo=" + echo + ", " +
 			"force=" + force + ", " +
 			"glassfishDirectory=" + home + ", " +
-			"jdbcDefaults=" + jdbcDefaults + ", " +
-			"jmsDefaults=" + jmsDefaults + ", " +
-			"jmsHosts=" + jmsHosts + ", " +
+			"jdbcDefaults=" + Stringifier.toString(jdbcDefaults) + ", " +
+			"jmsDefaults=" + Stringifier.toString(jmsDefaults) + ", " +
+			"jmsHosts=" + Stringifier.toString(jmsHosts) + ", " +
 			"jmsService=" + jmsService + ", " +
 			"passwordFile=" + passwordFile + ", " +
 			"terse=" + terse + ", " +

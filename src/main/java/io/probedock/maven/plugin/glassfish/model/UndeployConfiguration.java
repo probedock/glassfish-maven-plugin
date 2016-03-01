@@ -8,15 +8,15 @@ import org.apache.maven.plugins.annotations.Parameter;
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
 public class UndeployConfiguration {
+	@Parameter(required = true)
+	private String name;
+
 	@Parameter
 	private Boolean dropTables;
 	
 	@Parameter
 	private Boolean cascade;
 	
-	@Parameter(required = true)
-	private String name;
-
 	public Boolean getDropTables() {
 		return dropTables;
 	}

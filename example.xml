@@ -1,0 +1,521 @@
+<configuration>
+  <glassfish>
+    <!-- following properties are required -->
+    <home>/path/to/glassfish/home/directory</home>
+    <passwordFile>/path/to/the/password/file</passwordFile>
+
+    <!-- following properties are string values -->
+    <user></user>
+    <domainDirectory>${home}/domains</domainDirectory>
+
+    <!-- following properties are boolean values with default: false -->
+    <debug>true|flase</debug>
+    <force>true|false</force>
+    <echo>true|false</echo>
+    <terse>true|false</terse>
+    <deleteDefaultJmsHost>true|false</deleteDefaultJmsHost>
+
+    <!-- following properties are boolean values with default: true -->
+    <autoCreate>true|false</autoCreate>
+
+    <!-- list of JMS defaults, these properties will be used for any JMS resource configuration -->
+    <jmsDefaults>
+      <jmsDefault>
+        <name></name>
+        <value></value>
+      </jmsDefault>
+      ...
+    </jmsDefaults>
+
+    <!-- list of JDBC defaults, these properties will be used for any JDBC resource configuration -->
+    <jdbcDefaults>
+      <jdbcDefault>
+        <name></name>
+        <value></value>
+      </jdbcDefault>
+      ...
+    </jdbcDefaults>
+
+    <!-- List of JMS hosts -->
+    <jmsHosts>
+      <jmsHost>
+        <!-- follwoing attributes are required -->
+        <name></name>
+        <mqHost></mqHost>
+
+        <!-- following properties are integer values -->
+        <mqPort></mqPort>
+
+        <!-- following properties are string values -->
+        <mqUser></mqUser>
+        <mqPassword></mqPassword>
+
+        <!-- list of properties -->
+        <properties>
+          <property>
+            <name></name>
+            <value></value>
+          </property>
+          ...
+        </properties>
+      </jmsHost>
+      ...
+    </jmsHosts>
+
+    <jmsService>
+      <!-- list of properties -->
+      <properties>
+        <property>
+          <name></name>
+          <value></value>
+        </property>
+        ...
+      </properties>
+    </jmsService>
+  </glassfish>
+
+  <domain>
+    <!-- following properties are string values -->
+    <host></host>
+    <directory>${glassfish.domainsDirectory}<directory>
+
+    <!-- required -->
+    <name></name>
+
+    <!-- following properties are integer values -->
+    <httpPort></httpPort>
+    <httpsPort></httpsPort>
+    <iiopPort></iiopPort>
+    <iiopsPort></iiopsPort>
+    <iiopsmPort></iiopsmPort>
+    <jmsPort></jmsPort>
+    <jmxPort></jmxPort>
+    <debuggerPort></debuggerPort>
+    <osgiShellTelnetPortPort></osgiShellTelnetPortPort>
+
+    <!-- default: false -->
+    <reuse>true|false</reuse>
+
+    <!-- list of JVM options to create -->
+    <createJvmOptions>
+      <!-- JVM option string. Ex: -Djava.net.preferIPv4Stack=true -->
+      <option></option>
+      ...
+    </createJvmOptions>
+
+    <!-- list of JVM options to delete -->
+    <deleteJvmOptions>
+      <!-- JVM option string. Ex: -Djava.net.preferIPv4Stack=true -->
+      <option></option>
+      ...
+    </deleteJvmOptions>
+
+    <!-- list of properties -->
+    <loggingAttributes>
+      <loggingAttribute>
+        <name></name>
+        <value></value>
+      </loggingAttribute>
+      ...
+    </loggingAttributes>
+
+    <!-- list of properties -->
+    <properties>
+      <property>
+        <name></name>
+        <value></value>
+      </property>
+      ...
+    </properties>
+
+    <!-- list of connection factories -->
+    <connectionFactories>
+      <connectionFactory>
+        <!-- following properties are required -->
+        <jndiName></jndiName>
+        <type>CONNECTION_FACTORY | QUEUE_CONNECTION_FACTORY | TOPIC_CONNECTION_FACTORY</type>
+
+        <!-- following properties are string values -->
+        <description></description>
+        <user></user>
+        <password></password>
+        <addressList></addressList>
+
+        <!-- list of properties -->
+        <properties>
+          <property>
+            <name></name>
+            <value></value>
+          </property>
+          ...
+        </properties>
+      </connectionFactory>
+      ...
+    </connectionFactories>
+
+    <!-- list of connector connection pools -->
+    <connectorConnectionPools>
+      <connectorConnectionPool>
+        <!-- following properties are required -->
+        <jndiName></jndiName>
+        <raname></raname>
+        <connectionDefinition></connectionDefinition>
+
+        <!-- default: true -->
+        <ping>true|false</ping>
+
+        <!-- default: true -->
+        <isConnectValidateReq>true|false</isConnectValidateReq>
+
+        <!-- list of properties -->
+        <properties>
+          <property>
+            <name></name>
+            <value></value>
+          </property>
+          ...
+        </properties>
+      </connectorConnectionPool>
+      ...
+    </connectorConnectionPools>
+
+    <!-- list of connector resources -->
+    <connectorResources>
+      <connectorResource>
+        <!-- following properties are required -->
+        <jndiName></jndiName>
+        <poolName></poolName>
+
+        <!-- list of properties -->
+        <properties>
+          <property>
+            <name></name>
+            <value></value>
+          </property>
+          ...
+        </properties>
+      </connectorResource>
+      ...
+    </connectorResources>
+
+    <!-- list of JMS resources -->
+    <jmsResources>
+      <jmsResource>
+        <!-- required -->
+        <jndiName></jndiName>
+
+        <!-- required -->
+        <type>QUEUE | TOPIC</type>
+
+        <name></name>
+        <description></description>
+
+        <!-- default: false -->
+        <createPhysicalDestination>true|false</createPhysicalDestination>
+
+        <!-- list of properties -->
+        <properties>
+          <property>
+            <name></name>
+            <value></value>
+          </property>
+          ...
+        </properties>
+      </jmsResource>
+      ...
+    </jmsResources>
+
+    <!-- list of JDBC resources -->
+    <jdbcResources>
+      <jdbcResource>
+        <!-- required, string value -->
+        <jndiName></jndiName>
+
+        <!-- following properties are string values -->
+        <description></description>
+        <poolDescription></poolDescription>
+        <type></type>
+        <dataSourceClassName></dataSourceClassName>
+        <initSql></initSql>
+        <isolationLevel></isolationLevel>
+        <validationMethod></validationMethod>
+        <validationTable></validationTable>
+        <sqlTraceListeners></sqlTraceListeners>
+        <driverClassName></driverClassName>
+        <validationClassName></validationClassName>
+        <url></url>
+        <user></user>
+        <password></password>
+
+        <!-- following properties are integer values -->
+        <steadyPoolSize></steadyPoolSize>
+        <maxPoolSize></maxPoolSize>
+        <maxWait></maxWait>
+        <poolResize></poolResize>
+        <idleTimeout></idleTimeout>
+        <validateAtMostOncePeriod></validateAtMostOncePeriod>
+        <leakTimeout></leakTimeout>
+        <statementLeakTimeout></statementLeakTimeout>
+        <creationRetryAttempts></creationRetryAttempts>
+        <creationRetryInterval></creationRetryInterval>
+        <statementTimeout></statementTimeout>
+        <maxConnectionUsageCount></maxConnectionUsageCount>
+        <statementCacheSize></statementCacheSize>
+
+        <!-- following properties are boolean values -->
+        <isolationGuaranteed>true|false</isolationGuaranteed>
+        <isConnectValidateReq>true|false</isConnectValidateReq>
+        <failConnection>true|false</failConnection>
+        <allowNonComponentCallers>true|false</allowNonComponentCallers>
+        <nonTransactionalConnections>true|false</nonTransactionalConnections>
+        <leakReclaim>true|false</leakReclaim>
+        <statementLeakReclaim>true|false</statementLeakReclaim>
+        <lazyConnectionEnlistment>true|false</lazyConnectionEnlistment>
+        <lazyConnectionAssociation>true|false</lazyConnectionAssociation>
+        <associateWithThread>true|false</associateWithThread>
+        <matchConnections>true|false</matchConnections>
+        <ping>true|false</ping>
+        <pooling>true|false</pooling>
+        <timerPool>true|false</timerPool>
+        <wrapJdbcObjects>true|false</wrapJdbcObjects>
+
+        <!-- list of pool properties -->
+        <poolProperties>
+          <poolProperty>
+            <name></name>
+            <value></value>
+          </poolProperty>
+          ...
+        </poolProperties>
+
+        <!-- list of properties -->
+        <properties>
+          <property>
+            <name></name>
+            <value></value>
+          </property>
+          ...
+        </properties>
+      </jdbcResource>
+      ...
+    </jdbcResources>
+
+    <!-- list of resource adapaters -->
+    <resourceAdapters>
+      <resourceAdapter>
+        <!-- the following properties are required -->
+        <humanName></humanName>
+
+        <deployConfig>
+          <name></name>
+
+          <!-- following properties are required -->
+          <file></file>
+
+          <!-- following properties are string values -->
+          <retrieve></retrieve>
+          <dbVendorName></dbVendorName>
+          <deploymentPlan></deploymentPlan>
+          <altdd></altdd>
+          <runtimeAltdd></runtimeAltdd>
+          <contextRoot></contextRoot>
+          <virtualServers></virtualServers>
+          <libraries></libraries>
+          <type></type>
+
+          <!-- following properties are integer valeus -->
+          <deploymentOrder></deploymentOrder>
+
+          <!-- following properties are boolean values -->
+          <force>true|false</force>
+          <upload>true|false</upload>
+          <createTables>true|false</createTables>
+          <dropAndCreateTables>true|false</dropAndCreateTables>
+          <uniqueTableNames>true|false</uniqueTableNames>
+          <enabled>true|false</enabled>
+          <generateRmiStubs>true|false</generateRmiStubs>
+          <preCompileJsp>true|false</preCompileJsp>
+          <verify>true|false</verify>
+          <availabilityEnabled>true|false</availabilityEnabled>
+          <asynReplication>true|false</asynReplication>
+          <lenabled>true|false</lenabled>
+          <keepState>true|false</keepState>
+
+          <!-- list of properties -->
+          <properties>
+            <property>
+              <name></name>
+              <value></value>
+            </property>
+            ...
+          </properties>
+        </deployConfig>
+
+        <!-- list of properties -->
+        <properties>
+          <property>
+            <name></name>
+            <value></value>
+          </property>
+          ...
+        </properties>
+      </resourceAdapter>
+      ...
+    </resourceAdapters>
+
+    <!-- list of admin objects -->
+    <adminObjects>
+      <adminObject>
+        <!-- following properties are required -->
+        <jndiName></jndiName>
+        <raname></raname>
+        <resourceType></resourceType>
+
+        <!-- list of properties -->
+        <properties>
+          <property>
+            <name></name>
+            <value></value>
+          </property>
+          ...
+        </properties>
+      </adminObject>
+      ...
+    </adminObjects>
+  </domain>
+
+  <deployConfiguration>
+    <name></name>
+
+    <!-- following properties are required -->
+    <file></file>
+
+    <!-- following properties are string values -->
+    <retrieve></retrieve>
+    <dbVendorName></dbVendorName>
+    <deploymentPlan></deploymentPlan>
+    <altdd></altdd>
+    <runtimeAltdd></runtimeAltdd>
+    <contextRoot></contextRoot>
+    <virtualServers></virtualServers>
+    <libraries></libraries>
+    <type></type>
+
+    <!-- following properties are integer valeus -->
+    <deploymentOrder></deploymentOrder>
+
+    <!-- following properties are boolean values -->
+    <force>true|false</force>
+    <upload>true|false</upload>
+    <createTables>true|false</createTables>
+    <dropAndCreateTables>true|false</dropAndCreateTables>
+    <uniqueTableNames>true|false</uniqueTableNames>
+    <enabled>true|false</enabled>
+    <generateRmiStubs>true|false</generateRmiStubs>
+    <preCompileJsp>true|false</preCompileJsp>
+    <verify>true|false</verify>
+    <availabilityEnabled>true|false</availabilityEnabled>
+    <asynReplication>true|false</asynReplication>
+    <lenabled>true|false</lenabled>
+    <keepState>true|false</keepState>
+
+    <!-- list of properties -->
+    <properties>
+      <property>
+        <name></name>
+        <value></value>
+      </property>
+      ...
+    </properties>
+  </deployConfiguration>
+
+  <redeployConfiguration>
+    <!-- following properties are required -->
+    <name></name>
+    <file></file>
+
+    <!-- following properties are string values -->
+    <retrieve></retrieve>
+    <dbVendorName></dbVendorName>
+    <deploymentPlan></deploymentPlan>
+    <altdd></altdd>
+    <runtimeAltdd></runtimeAltdd>
+    <contextRoot></contextRoot>
+    <virtualServers></virtualServers>
+    <libraries></libraries>
+    <type></type>
+
+    <!-- following properties are integer valeus -->
+    <deploymentOrder></deploymentOrder>
+
+    <!-- following properties are boolean values -->
+    <force>true|false</force>
+    <upload>true|false</upload>
+    <createTables>true|false</createTables>
+    <dropAndCreateTables>true|false</dropAndCreateTables>
+    <uniqueTableNames>true|false</uniqueTableNames>
+    <enabled>true|false</enabled>
+    <generateRmiStubs>true|false</generateRmiStubs>
+    <preCompileJsp>true|false</preCompileJsp>
+    <verify>true|false</verify>
+    <availabilityEnabled>true|false</availabilityEnabled>
+    <asynReplication>true|false</asynReplication>
+    <lenabled>true|false</lenabled>
+    <keepState>true|false</keepState>
+
+    <!-- list of properties -->
+    <properties>
+      <property>
+        <name></name>
+        <value></value>
+      </property>
+      ...
+    </properties>
+  </redeployConfiguration>
+
+  <undeployConfiguration>
+    <!-- following properties are required -->
+    <name></name>
+    <file></file>
+
+    <!-- following properties are string values -->
+    <retrieve></retrieve>
+    <dbVendorName></dbVendorName>
+    <deploymentPlan></deploymentPlan>
+    <altdd></altdd>
+    <runtimeAltdd></runtimeAltdd>
+    <contextRoot></contextRoot>
+    <virtualServers></virtualServers>
+    <libraries></libraries>
+    <type></type>
+
+    <!-- following properties are integer valeus -->
+    <deploymentOrder></deploymentOrder>
+
+    <!-- following properties are boolean values -->
+    <force>true|false</force>
+    <upload>true|false</upload>
+    <createTables>true|false</createTables>
+    <dropAndCreateTables>true|false</dropAndCreateTables>
+    <uniqueTableNames>true|false</uniqueTableNames>
+    <enabled>true|false</enabled>
+    <generateRmiStubs>true|false</generateRmiStubs>
+    <preCompileJsp>true|false</preCompileJsp>
+    <verify>true|false</verify>
+    <availabilityEnabled>true|false</availabilityEnabled>
+    <asynReplication>true|false</asynReplication>
+    <lenabled>true|false</lenabled>
+    <keepState>true|false</keepState>
+    <dropTables>true|false</dropTables>
+    <cascade>true|false</cascade>
+
+    <!-- list of properties -->
+    <properties>
+      <property>
+        <name></name>
+        <value></value>
+      </property>
+      ...
+    </properties>
+  </undeployConfiguration>
+</configuration>

@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -7,8 +8,11 @@ import org.apache.maven.plugins.annotations.Parameter;
  * Configuration for a resource adapter.
  * 
  * @author Valentin Delaye valentin.delaye@novaccess.ch
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class ResourceAdapter {
+public class ResourceAdapter implements Comparable<ResourceAdapter> {
+	@Parameter(required = true)
+	private String humanName;
 	
 	/**
 	 * The deploy configuration for the resource adapter
@@ -21,6 +25,14 @@ public class ResourceAdapter {
 	 */
 	@Parameter
 	private Set<Property> properties;
+
+	public String getHumanName() {
+		return humanName;
+	}
+
+	public void setHumanName(String humanName) {
+		this.humanName = humanName;
+	}
 
 	public Set<Property> getProperties() {
 		return properties;
@@ -44,17 +56,14 @@ public class ResourceAdapter {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		String props = null;
-		if(properties != null) {
-			for (Property p : properties) {
-				builder.append(p).append(", ");
-			}
-			props = builder.toString().replaceAll(", $", "");
-		}
 		return 
+			"humanName=" + humanName + ", " +
 			"deployConfig=" + deployConfig + ", " +
-			"properties=" + props;
+			"properties=" + Stringifier.toString(properties);
 	}
-	
+
+	@Override
+	public int compareTo(ResourceAdapter resourceAdapterToCompare) {
+		return humanName.compareTo(resourceAdapterToCompare.humanName);
+	}
 }

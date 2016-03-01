@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -23,6 +24,6 @@ public class JmsService {
 	@Override
 	public String toString() {
 		return 
-			"properties=" + properties;
+			"properties=" + Stringifier.toString(properties);
 	}
 }

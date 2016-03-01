@@ -7,7 +7,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * 
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class Property {
+public class Property implements Comparable<Property> {
 	@Parameter(required = true)
 	private String name;
 
@@ -47,5 +47,28 @@ public class Property {
 		return 
 			"name=" + name + ", " +
 			"value=" + value;
+	}
+
+	@Override
+	public int compareTo(Property propertyToCompare) {
+		if (name == null) {
+			return -1;
+		} else if (propertyToCompare.name == null) {
+			return 1;
+		}
+
+		int result = name.compareTo(propertyToCompare.name);
+
+		if (result == 0) {
+			if (value == null) {
+				return -1;
+			} else if (propertyToCompare.value == null) {
+				return 1;
+			}
+
+			return value.compareTo(propertyToCompare.value);
+		} else {
+			return result;
+		}
 	}
 }

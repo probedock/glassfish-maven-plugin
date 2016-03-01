@@ -7,7 +7,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * 
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class DeployConfiguration extends AbstractDeployConfiguration {
+public class DeployConfiguration extends AbstractDeployConfiguration implements Comparable<DeployConfiguration> {
 	@Parameter
 	private String name;
 
@@ -36,5 +36,10 @@ public class DeployConfiguration extends AbstractDeployConfiguration {
 	public String toString() {
 		return "super(" + super.toString() + "), " +
 			"name=" + name;
+	}
+
+	@Override
+	public int compareTo(DeployConfiguration deployConfigurationToCompare) {
+		return name.compareTo(deployConfigurationToCompare.name);
 	}
 }

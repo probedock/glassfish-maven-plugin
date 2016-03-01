@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -240,7 +241,7 @@ public abstract class AbstractDeployConfiguration {
 			"lenabled=" + lenabled + ", " + 
 			"libraries=" + libraries + ", " + 
 			"preCompileJsp=" + preCompileJsp + ", " + 
-			"properties=" + properties + ", " + 
+			"properties=" + Stringifier.toString(properties) + ", " + 
 			"retrieve=" + retrieve + ", " + 
 			"runtimeAltdd=" + runtimeAltdd + ", " + 
 			"type=" + type + ", " + 
@@ -249,6 +250,4 @@ public abstract class AbstractDeployConfiguration {
 			"verify=" + verify + ", " + 
 			"virtualServers=" + virtualServers;
 	}
-	
-	
 }

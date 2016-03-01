@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -8,7 +9,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * 
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class ConnectionFactory {
+public class ConnectionFactory implements Comparable<ConnectionFactory> {
 	/**
 	 * JNDI name of the connection factory
 	 */
@@ -86,9 +87,14 @@ public class ConnectionFactory {
 			"description=" + description + ", " +
 			"jndi=" + jndiName + ", " +
 			"password=" + password  + ", " +
-			"propeties=" + properties + ", " + 
+			"propeties=" + Stringifier.toString(properties) + ", " + 
 			"type=" + type + ", " +
 			"user=" + user + ", ";
+	}
+
+	@Override
+	public int compareTo(ConnectionFactory connectionFactoryToCompare) {
+		return jndiName.compareTo(connectionFactoryToCompare.jndiName);
 	}
 	
 	/**
@@ -99,7 +105,7 @@ public class ConnectionFactory {
     QUEUE_CONNECTION_FACTORY("javax.jms.QueueConnectionFactory"),
 		TOPIC_CONNECTION_FACTORY("javax.jms.TopicConnectionFactory");
 
-		private String clazz;
+		private final String clazz;
 		
 		/**
 		 * Constructor

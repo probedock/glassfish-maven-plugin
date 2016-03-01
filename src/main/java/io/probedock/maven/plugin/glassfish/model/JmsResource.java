@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -9,7 +10,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * 
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class JmsResource {
+public class JmsResource implements Comparable<JmsResource> {
 	@Parameter(required = true)
 	private String jndiName;
 	
@@ -59,8 +60,13 @@ public class JmsResource {
 			"description=" + description + ", " +
 			"jndi=" + jndiName + ", " +
 			"name=" + name + ", " +
-			"propeties=" + properties + ", " + 
+			"propeties=" + Stringifier.toString(properties) + ", " + 
 			"type=" + type + ", ";
+	}
+
+	@Override
+	public int compareTo(JmsResource jmsResourceToCompare) {
+		return jndiName.compareTo(jmsResourceToCompare.jndiName);
 	}
 	
 	/**

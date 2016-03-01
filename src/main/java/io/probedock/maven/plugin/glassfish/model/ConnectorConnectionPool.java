@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -7,8 +8,9 @@ import org.apache.maven.plugins.annotations.Parameter;
  * Represents a connector connection pool and configuration required its creation.
  * 
  * @author Valentin Delaye valentin.delaye@novaccess.ch
+ * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class ConnectorConnectionPool {
+public class ConnectorConnectionPool implements Comparable<ConnectorConnectionPool> {
 
 	/**
 	 * JNDI name of the connector connector pool
@@ -31,14 +33,14 @@ public class ConnectorConnectionPool {
 	/**
 	 * Ping during creation of the connection pool
 	 */
-	@Parameter(required = false, defaultValue = "true")
-	private Boolean ping;
+	@Parameter(defaultValue = "true")
+	private Boolean ping = true;
 	
 	/**
 	 * Ping during creation of the connection pool
 	 */
-	@Parameter(required = false, defaultValue = "true")
-	private Boolean isConnectValidateReq;
+	@Parameter(defaultValue = "true")
+	private Boolean isConnectValidateReq = true;
 	
 	@Parameter
 	private Set<Property> properties;
@@ -94,11 +96,16 @@ public class ConnectorConnectionPool {
 	@Override
 	public String toString() {
 		return 
+			"connectionDefinition=" + connectionDefinition + ", " + 
+			"isConnectValidateReq=" + isConnectValidateReq + ", " +
 			"jndiName=" + jndiName + ", " +
-			"raname=" + raname + ", " +
-			"connectionDefinition=" + connectionDefinition +
 			"ping=" + ping + ", " +
-			"isConnectValidateReq=" + isConnectValidateReq;
+			"properties=" + Stringifier.toString(properties) + ", " +
+			"raname=" + raname;
 	}
-	
+
+	@Override
+	public int compareTo(ConnectorConnectionPool connectorConnectionPoolToCompare) {
+		return jndiName.compareTo(connectorConnectionPoolToCompare.jndiName);
+	}
 }

@@ -1,5 +1,6 @@
 package io.probedock.maven.plugin.glassfish.model;
 
+import io.probedock.maven.plugin.glassfish.utils.Stringifier;
 import java.util.Set;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -8,7 +9,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * 
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class JmsHost {
+public class JmsHost implements Comparable<JmsHost> {
 	@Parameter(required = true)
 	private String name;
 	
@@ -63,6 +64,11 @@ public class JmsHost {
 			"mqport=" + mqPort + ", " +
 			"mquser=" + mqUser + ", " +
 			"name=" + name + ", " + 
-			"properties=" + properties;
+			"properties=" + Stringifier.toString(properties);
+	}
+
+	@Override
+	public int compareTo(JmsHost jmsHostToCompare) {
+		return name.compareTo(jmsHostToCompare.name);
 	}
 }
