@@ -1,4 +1,4 @@
-# lotaris-glassfish-maven-plugin
+# glassfish-maven-plugin
 
 > A plugin to create/drop domains, deploy application and manage resources.
 
@@ -8,9 +8,9 @@
 
 ```xml
 <plugin>
-	<groupId>com.lotaris.maven.plugins</groupId>
-	<artifactId>lotaris-glassfish-maven-plugin</artifactId>
-	<version>1.3.0</version>
+	<groupId>io.probedock.maven.plugins</groupId>
+	<artifactId>glassfish-maven-plugin</artifactId>
+	<version>1.0.0</version>
 	<executions>
 		<execution>
 			<id>glassfish</id>
@@ -77,5 +77,5 @@ Please add a changelog entry with your name for new features and bug fixes.
 
 ## License
 
-**lotaris-glassfish-maven-plugin** is licensed under the [MIT License](http://opensource.org/licenses/MIT).
+**glassfish-maven-plugin** is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 See [LICENSE.txt](LICENSE.txt) for the full text.

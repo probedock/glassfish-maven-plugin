@@ -1,3 +1,4 @@
+Copyright (c) 2016 Probe Dock
 Copyright (c) 2014 Lotaris SA
 
 Permission is hereby granted, free of charge, to any person obtaining
