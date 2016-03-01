@@ -9,7 +9,10 @@ import org.apache.maven.plugins.annotations.Parameter;
  * 
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public abstract class AbstractDeployConfiguration {
+public abstract class AbstractDeployConfiguration implements Comparable<AbstractDeployConfiguration> {
+	@Parameter(required = true)
+	private String name;
+
 	@Parameter(required = true)
 	private String file;
 	
@@ -88,12 +91,13 @@ public abstract class AbstractDeployConfiguration {
 	public AbstractDeployConfiguration() {
 	}
 
-	protected AbstractDeployConfiguration(String file, Boolean force, Boolean upload, String retrieve, String dbVendorName, 
+	protected AbstractDeployConfiguration(String name, String file, Boolean force, Boolean upload, String retrieve, String dbVendorName, 
 	Boolean createTables, Boolean dropAndCreateTables, Boolean uniqueTableNames, String deploymentPlan, String altdd, String runtimeAltdd, 
 	Integer deploymentOrder, Boolean enabled, Boolean generateRmiStubs, String contextRoot, Boolean preCompileJsp, Boolean verify, 
 	String virtualServers, Boolean availabilityEnabled, Boolean asynReplication, Boolean lenabled, Boolean keepState, String libraries, 
 	String type, Set<Property> properties) {
 	
+		this.name = name;
 		this.file = file;
 		this.force = force;
 		this.upload = upload;
@@ -220,6 +224,14 @@ public abstract class AbstractDeployConfiguration {
 	public Boolean getForce() {
 		return force;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	@Override
 	public String toString() {
@@ -240,6 +252,7 @@ public abstract class AbstractDeployConfiguration {
 			"keepState=" + keepState + ", " + 
 			"lenabled=" + lenabled + ", " + 
 			"libraries=" + libraries + ", " + 
+			"name=" + name + ", " +
 			"preCompileJsp=" + preCompileJsp + ", " + 
 			"properties=" + Stringifier.toString(properties) + ", " + 
 			"retrieve=" + retrieve + ", " + 
@@ -249,5 +262,10 @@ public abstract class AbstractDeployConfiguration {
 			"upload=" + upload + ", " + 
 			"verify=" + verify + ", " + 
 			"virtualServers=" + virtualServers;
+	}
+		
+	@Override
+	public int compareTo(AbstractDeployConfiguration deployConfigurationToCompare) {
+		return name.compareTo(deployConfigurationToCompare.name);
 	}
 }

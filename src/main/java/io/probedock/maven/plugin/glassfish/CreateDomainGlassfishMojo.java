@@ -4,6 +4,7 @@ import io.probedock.maven.plugin.glassfish.macro.AbstractMacro;
 import io.probedock.maven.plugin.glassfish.macro.CreateDomainMacro;
 import io.probedock.maven.plugin.glassfish.model.Configuration;
 import io.probedock.maven.plugin.glassfish.model.ConnectionFactory;
+import io.probedock.maven.plugin.glassfish.model.DomainCreationStep;
 import io.probedock.maven.plugin.glassfish.model.JdbcResource;
 import io.probedock.maven.plugin.glassfish.model.Property;
 import java.lang.reflect.Field;
@@ -27,42 +28,44 @@ public class CreateDomainGlassfishMojo extends GlassfishMojo {
 	protected Configuration buildConfiguration() {
 		Configuration config = new Configuration(getLog(), glassfish, domain);
 		
-		if (domain.getConnectionFactories() != null) {
-			// Ensure that the configuration of JMS Connection factories are well configured
-			for (ConnectionFactory connectionFactory : domain.getConnectionFactories()) {
-				// Try to set the default values to the connection factories
-				for (Property property : glassfish.getJmsDefaults()) {
-					try {
-						setFieldValue(connectionFactory, property);
+			for (DomainCreationStep dcs : domain.getCreationSteps()) {
+			if (dcs.getConnectionFactories() != null) {
+				// Ensure that the configuration of JMS Connection factories are well configured
+				for (ConnectionFactory connectionFactory : dcs.getConnectionFactories()) {
+					// Try to set the default values to the connection factories
+					for (Property property : glassfish.getJmsDefaults()) {
+						try {
+							setFieldValue(connectionFactory, property);
+						}
+						catch (NoSuchFieldException nsfe) {
+							getLog().warn("No field " + property.getName() + " presents on connection factory object.");
+						}
+						catch (IllegalAccessException iae) {
+							getLog().warn("Unable to set " + property.getName() + " on connection factory object.");
+						}
 					}
-					catch (NoSuchFieldException nsfe) {
-						getLog().warn("No field " + property.getName() + " presents on connection factory object.");
-					}
-					catch (IllegalAccessException iae) {
-						getLog().warn("Unable to set " + property.getName() + " on connection factory object.");
+				}
+			}
+
+			if (dcs.getJdbcResources() != null) {
+				// Ensure that the configuration of JDBC resources are well configured
+				for (JdbcResource jdbcResource : dcs.getJdbcResources()) {
+					// Try to set the default values to the JDBC resources
+					for (Property property : glassfish.getJdbcDefaults()) {
+						try {
+							setFieldValue(jdbcResource, property);
+						}
+						catch (NoSuchFieldException nsfe) {
+							getLog().warn("No field " + property.getName() + " presents on JDBC resource object.");
+						}
+						catch (IllegalAccessException iae) {
+							getLog().warn("Unable to set " + property.getName() + " on JDBC resource object.");
+						}
 					}
 				}
 			}
 		}
-		
-		if (domain.getJdbcResources() != null) {
-			// Ensure that the configuration of JDBC resources are well configured
-			for (JdbcResource jdbcResource : domain.getJdbcResources()) {
-				// Try to set the default values to the JDBC resources
-				for (Property property : glassfish.getJdbcDefaults()) {
-					try {
-						setFieldValue(jdbcResource, property);
-					}
-					catch (NoSuchFieldException nsfe) {
-						getLog().warn("No field " + property.getName() + " presents on JDBC resource object.");
-					}
-					catch (IllegalAccessException iae) {
-						getLog().warn("Unable to set " + property.getName() + " on JDBC resource object.");
-					}
-				}
-			}
-		}
-		
+			
 		return config;
 	}
 	

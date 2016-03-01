@@ -1,6 +1,8 @@
-package io.probedock.maven.plugin.glassfish.macro;
+package io.probedock.maven.plugin.glassfish.macro.domain;
 
+import io.probedock.maven.plugin.glassfish.macro.MacroCommand;
 import io.probedock.maven.plugin.glassfish.model.Configuration;
+import io.probedock.maven.plugin.glassfish.model.DomainCreationStep;
 import io.probedock.maven.plugin.glassfish.model.JdbcResource;
 
 import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
@@ -10,19 +12,20 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
  * 
  * @author Laurent Prevost laurent.prevost@probedock.io
  */
-public class JdbcResourcesMacro extends AbstractMacro {
+public class JdbcResourcesMacro extends AbstractCreationStepMacro {
 	/**
 	 * Constructor
 	 * 
 	 * @param configuration The configuration
+	 * @param domainCreationStep The current domain creation step
 	 */
-	public JdbcResourcesMacro(Configuration configuration) {
-		super(configuration);
+	public JdbcResourcesMacro(Configuration configuration, DomainCreationStep domainCreationStep) {
+		super(configuration, domainCreationStep);
 
-		if (configuration.getDomain() != null && configuration.getDomain().getJdbcResources() != null) {
-			for (JdbcResource resource : configuration.getDomain().getJdbcResources()) {
+		if (currentDomainCreationStep != null && currentDomainCreationStep.getJdbcResources() != null) {
+			for (JdbcResource resource : currentDomainCreationStep.getJdbcResources()) {
 				registerCommand(new MacroCommand(buildCreatJdbcConnectionPool(configuration, resource), "Create JDBC connection pool [" + resource.getJndiName() + "]."));
-				if(resource.getTimerPool()!= null && resource.getTimerPool()) {
+				if(resource.getTimerPool() != null && resource.getTimerPool()) {
 					registerCommand(new MacroCommand(buildSetTimerResourceConnectionPool(configuration, resource), "Update jdbc/__TimerPool resource with connection pool [" + resource.getJndiName() + "]."));
 				}
 				else {

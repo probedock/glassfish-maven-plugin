@@ -1,6 +1,16 @@
 package io.probedock.maven.plugin.glassfish.macro;
 
+import io.probedock.maven.plugin.glassfish.macro.domain.AdminObjectsMacro;
+import io.probedock.maven.plugin.glassfish.macro.domain.ConnectorResourceMacro;
+import io.probedock.maven.plugin.glassfish.macro.domain.ConnectorConnectionPoolsMacro;
+import io.probedock.maven.plugin.glassfish.macro.domain.DomainCreationStepMacro;
+import io.probedock.maven.plugin.glassfish.macro.domain.ResourceAdaptersMacro;
+import io.probedock.maven.plugin.glassfish.macro.domain.JdbcResourcesMacro;
+import io.probedock.maven.plugin.glassfish.macro.domain.JmsResourcesMacro;
+import io.probedock.maven.plugin.glassfish.macro.domain.SetCommandMacro;
+import io.probedock.maven.plugin.glassfish.macro.domain.JvmOptionsMacro;
 import io.probedock.maven.plugin.glassfish.model.Configuration;
+import io.probedock.maven.plugin.glassfish.model.DomainCreationStep;
 
 import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
 
@@ -40,17 +50,23 @@ public class CreateDomainMacro extends AbstractMacro {
 			}
 		}
 		
+		// Create and start the domain
 		registerCommand(new MacroCommand(buildCreateDomainCommand(configuration), "Creating domain."));
 		registerCommand(new MacroCommand(buildStartDomainCommand(configuration), "Starting domain."));
-		registerCommand(new MacroMacroCommand(new JvmOptionsMacro(configuration), "Managing the JVM options."));
-		registerCommand(new MacroMacroCommand(new SetCommandMacro(configuration), "Setting additional domain properties"));
+		
+		// Do the global configuration of JMS on glassfish
+		registerCommand(new MacroMacroCommand(new JmsHostsMacro(configuration), "Configure the JMS Hosts."));
+		registerCommand(new MacroMacroCommand(new JmsServiceMacro(configuration), "Configure the JMS Service."));
+		
+		// Configure the logging
 		registerCommand(new MacroCommand(buildSetLoggingAttributesCommand(configuration), "Setting the logging attributes."));
-		registerCommand(new MacroMacroCommand(new JmsResourcesMacro(configuration), "Managing JMS Resources."));
-		registerCommand(new MacroMacroCommand(new JdbcResourcesMacro(configuration), "Managing JDBC Resources."));
-		registerCommand(new MacroMacroCommand(new ResourceAdaptersMacro(configuration), "Managing deployment of Resource Adapter"));
-		registerCommand(new MacroMacroCommand(new ConnectorConnectionPoolsMacro(configuration), "Creating Connectors Connection Pools."));
-		registerCommand(new MacroMacroCommand(new ConnectorResourceMacro(configuration), "Creating Connectors Resources."));
-		registerCommand(new MacroMacroCommand(new AdminObjectsMacro(configuration), "Creating Admin Object."));
+
+		// Do the multi-steps configuration
+		for (DomainCreationStep dcs : configuration.getDomain().getCreationSteps()) {
+			registerCommand(new MacroMacroCommand(new DomainCreationStepMacro(configuration, dcs), "Process the creation step: [" + dcs.getName() + "]."));
+		}
+
+		// Stop the domain
 		registerCommand(new MacroCommand(buildStopDomainCommand(configuration), "Stopping domain."));
 	}
 }

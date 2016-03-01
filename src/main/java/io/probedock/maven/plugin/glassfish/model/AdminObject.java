@@ -22,7 +22,7 @@ public class AdminObject implements Comparable<AdminObject> {
 	 * Name of the resource adapter to use
 	 */
 	@Parameter(required = true)
-	private String raname;
+	private String resourceAdapterName;
 	
 	/**
 	 * Type (class name) of the resource
@@ -41,20 +41,20 @@ public class AdminObject implements Comparable<AdminObject> {
 		this.jndiName = jndiName;
 	}
 
-	public String getRaname() {
-		return raname;
+	public String getResourceAdapterName() {
+		return resourceAdapterName;
 	}
 
-	public void setRaname(String raname) {
-		this.raname = raname;
+	public void setResourceAdapterName(String resourceAdapterName) {
+		this.resourceAdapterName = resourceAdapterName;
 	}
 
-	public String getRestype() {
+	public String getResourceType() {
 		return resourceType;
 	}
 
-	public void setRestype(String restype) {
-		this.resourceType = restype;
+	public void setResourceType(String resourceType) {
+		this.resourceType = resourceType;
 	}
 
 	public Set<Property> getProperties() {
@@ -69,7 +69,7 @@ public class AdminObject implements Comparable<AdminObject> {
 	public String toString() {
 		return 
 			"jndiName=" + jndiName + ", " +
-			"raname=" + raname + "," +
+			"resourceAdapterName=" + resourceAdapterName + "," +
 			"resourceType=" + resourceType + "," +
 			"properties=" + Stringifier.toString(properties);
 	}

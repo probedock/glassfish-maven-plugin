@@ -1,7 +1,9 @@
-package io.probedock.maven.plugin.glassfish.macro;
+package io.probedock.maven.plugin.glassfish.macro.domain;
 
+import io.probedock.maven.plugin.glassfish.macro.MacroCommand;
 import io.probedock.maven.plugin.glassfish.model.Configuration;
 import io.probedock.maven.plugin.glassfish.model.ConnectorResource;
+import io.probedock.maven.plugin.glassfish.model.DomainCreationStep;
 
 import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
 
@@ -11,19 +13,20 @@ import static io.probedock.maven.plugin.glassfish.command.CommandFactory.*;
  * 
  * @author Valentin Delaye valentin.delaye@novaccess.ch
  */
-public class ConnectorResourceMacro extends AbstractMacro {
+public class ConnectorResourceMacro extends AbstractCreationStepMacro {
 	/**
 	 * Constructor
 	 * 
 	 * @param configuration The configuration
+	 * @param domainCreationStep The current domain creation step
 	 */
-	public ConnectorResourceMacro(Configuration configuration) {
-		super(configuration);
+	public ConnectorResourceMacro(Configuration configuration, DomainCreationStep domainCreationStep) {
+		super(configuration, domainCreationStep);
 
 		// Configure the Conector Resource if there are some
-		if (configuration.getDomain().hasConnectorResources()) {
+		if (currentDomainCreationStep.hasConnectorResources()) {
 			
-			for (ConnectorResource connectorResource : configuration.getDomain().getConnectorResources()) {
+			for (ConnectorResource connectorResource : currentDomainCreationStep.getConnectorResources()) {
 				// Create and register the command
 				registerCommand(new MacroCommand(buildCreateConnectorConnectionPoolCommand(configuration, connectorResource), "Create the Connector resource [" + connectorResource.getJndiName()+ "]."));
 			}

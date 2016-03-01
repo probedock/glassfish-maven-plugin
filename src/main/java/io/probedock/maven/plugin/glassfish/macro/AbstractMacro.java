@@ -42,7 +42,7 @@ public abstract class AbstractMacro {
 	public void execute(CommandExecutor executor) throws MojoExecutionException, MojoFailureException {
 		// Run each macro command
 		for (IMacroCommand macroCommand : commands) {
-			configuration.getLog().info("*****> " + macroCommand.getDescriptionText() + " <*****");
+			configuration.getLog().info(formatMessage(macroCommand));
 			macroCommand.execute(executor);
 		}
 	}
@@ -63,5 +63,25 @@ public abstract class AbstractMacro {
 	 */
 	protected boolean isLocalDomain() {
 		return configuration.isLocalDomain();
+	}
+	
+	/**
+	 * Build a message from the macro command description
+	 * 
+	 * @param macroCommand The macro command to get the description
+	 * @return The message built
+	 */
+	protected String buildMessage(IMacroCommand macroCommand) {
+		return macroCommand.getDescriptionText();
+	}
+
+	/**
+	 * Format the macro command description
+	 * 
+	 * @param macroCommand The macro command to format
+	 * @return The message formated
+	 */
+	private String formatMessage(IMacroCommand macroCommand) {
+		return "*****> " + buildMessage(macroCommand) + " <*****";
 	}
 }
