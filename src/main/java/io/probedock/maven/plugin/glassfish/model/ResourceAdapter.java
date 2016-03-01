@@ -12,13 +12,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  */
 public class ResourceAdapter implements Comparable<ResourceAdapter> {
 	@Parameter(required = true)
-	private String humanName;
-	
-	/**
-	 * The deploy configuration for the resource adapter
-	 */
-	@Parameter(required = true)
-	private DeployConfiguration deployConfig;
+	private String name;
 	
 	/**
 	 * A set of additional properties to configure
@@ -26,12 +20,12 @@ public class ResourceAdapter implements Comparable<ResourceAdapter> {
 	@Parameter
 	private Set<Property> properties;
 
-	public String getHumanName() {
-		return humanName;
+	public String getName() {
+		return name;
 	}
 
-	public void setHumanName(String humanName) {
-		this.humanName = humanName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Set<Property> getProperties() {
@@ -46,24 +40,15 @@ public class ResourceAdapter implements Comparable<ResourceAdapter> {
 		return this.properties != null && !this.properties.isEmpty();
 	}
 	
-	public DeployConfiguration getDeployConfig() {
-		return deployConfig;
-	}
-
-	public void setDeployConfig(DeployConfiguration deployConfig) {
-		this.deployConfig = deployConfig;
-	}
-
 	@Override
 	public String toString() {
 		return 
-			"humanName=" + humanName + ", " +
-			"deployConfig=" + deployConfig + ", " +
+			"name=" + name + ", " +
 			"properties=" + Stringifier.toString(properties);
 	}
 
 	@Override
 	public int compareTo(ResourceAdapter resourceAdapterToCompare) {
-		return humanName.compareTo(resourceAdapterToCompare.humanName);
+		return name.compareTo(resourceAdapterToCompare.name);
 	}
 }

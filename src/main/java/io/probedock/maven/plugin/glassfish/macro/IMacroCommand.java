@@ -14,8 +14,8 @@ public interface IMacroCommand {
 	 * Execute the macro command
 	 * 
 	 * @param executor The executor for the commands
-	 * @throws MojoExecutionException
-	 * @throws MojoFailureException 
+	 * @throws MojoExecutionException When macro cannot be executed
+	 * @throws MojoFailureException When macro failed to be executed
 	 */
 	void execute(CommandExecutor executor) throws MojoExecutionException, MojoFailureException;
 	

@@ -100,70 +100,16 @@ public class Domain {
 	private boolean reuse;
 	
 	/**
-	 * A list of JVM options to create
-	 */
-	@Parameter
-	private Set<String> createJvmOptions;
-	
-	/**
-	 * A list of JVM options to delete
-	 */
-	@Parameter
-	private Set<String> deleteJvmOption;
-	
-	/**
 	 * Define the properties to set for the logging configuration
 	 */
 	@Parameter
 	private Set<Property> loggingAttributes;
 	
 	/**
-	 * Additional properties to configure for the domain
+	 * Define the various step to configure a domain
 	 */
-	@Parameter
-	private Set<Property> properties;
-	
-	/**
-	 * A list of connection factories to create
-	 */
-	@Parameter
-	private Set<ConnectionFactory> connectionFactories;
-	
-	/**
-	 * Define a set of connector connection pool to create
-	 */
-	@Parameter
-	private Set<ConnectorConnectionPool> connectorConnectionPools;
-	
-	/**
-	 * Define a set of connector resource to create
-	 */
-	@Parameter
-	private Set<ConnectorResource> connectorResources;
-	
-	/**
-	 * A list of JMS resources to create (resources + physical destinations)
-	 */
-	@Parameter
-	private Set<JmsResource> jmsResources;
-
-	/**
-	 * A list of JDBC resources to create (resources + pools)
-	 */
-	@Parameter
-	private Set<JdbcResource> jdbcResources;
-	
-	/**
-	 * A list of Resource Adapter to deploy on the domain
-	 */
-	@Parameter
-	private Set<ResourceAdapter> resourceAdapters;
-	
-	/**
-	 * A list of admin object to create
-	 */
-	@Parameter
-	private Set<AdminObject> adminObjects;
+	@Parameter(required = true)
+	DomainCreationStep[] creationSteps;
 	
 	public String getName() {
 		return name;
@@ -213,81 +159,9 @@ public class Domain {
 		return reuse;
 	}
 
-	public Set<String> getCreateJvmOptions() {
-		return createJvmOptions;
-	}
-
-	public Set<String> getDeleteJvmOption() {
-		return deleteJvmOption;
-	}
-
 	public Set<Property> getLoggingAttributes() {
 		return loggingAttributes;
 	}
-	
-	public Set<Property> getProperties() {
-		return properties;
-	}
-
-	public Set<ConnectionFactory> getConnectionFactories() {
-		return connectionFactories;
-	}
-
-	public Set<JmsResource> getJmsResources() {
-		return jmsResources;
-	}
-
-	public Set<JdbcResource> getJdbcResources() {
-		return jdbcResources;
-	}
-	
-	public Set<ConnectorConnectionPool> getConnectorConnectionPools() {
-		return connectorConnectionPools;
-	}
-
-	public void setConnectorConnectionPools(Set<ConnectorConnectionPool> connectorConnectionPools) {
-		this.connectorConnectionPools = connectorConnectionPools;
-	}
-	
-	public boolean hasConnectorConnectionPools() {
-		return connectorConnectionPools != null && !connectorConnectionPools.isEmpty();
-	}
-
-	public Set<ConnectorResource> getConnectorResources() {
-		return connectorResources;
-	}
-
-	public void setConnectorResources(Set<ConnectorResource> connectorResources) {
-		this.connectorResources = connectorResources;
-	}
-	
-	public boolean hasConnectorResources() {
-		return connectorResources != null && !connectorResources.isEmpty();
-	}	
-
-	public Set<ResourceAdapter> getResourceAdapters() {
-		return resourceAdapters;
-	}
-
-	public void setResourceAdapters(Set<ResourceAdapter> resourceAdapters) {
-		this.resourceAdapters = resourceAdapters;
-	}
-	
-	public boolean hasResourceAdapters() {
-		return resourceAdapters != null && !resourceAdapters.isEmpty();
-	}
-
-	public Set<AdminObject> getAdminObjects() {
-		return adminObjects;
-	}
-
-	public void setAdminObjects(Set<AdminObject> adminObjects) {
-		this.adminObjects = adminObjects;
-	}
-	
-	public boolean hasAdminObjects() {
-		return adminObjects != null && !adminObjects.isEmpty();
-	}	
 	
 	/**
 	 * @return True if the domain exists (if the directory of the domain exists)
@@ -304,6 +178,14 @@ public class Domain {
 		this.host = host;
 	}
 
+	public DomainCreationStep[] getCreationSteps() {
+		return creationSteps;
+	}
+
+	public void setCreationSteps(DomainCreationStep[] creationSteps) {
+		this.creationSteps = creationSteps;
+	}
+	
 	/**
 	 * @return True if the admin port respond to a socket solicitation
 	 */
@@ -329,14 +211,9 @@ public class Domain {
 	@Override
 	public String toString() {
 		return 
-			"adminObjects=" + Stringifier.toString(adminObjects) + ", " +
-			"createJvmOptions=" + createJvmOptions + ", " +
 			"adminPort=" + adminPort + ", " + 
-			"connectionFactories=" + Stringifier.toString(connectionFactories) + ", " +
-			"connectorConnectionPools=" + Stringifier.toString(connectorConnectionPools) + ", " +
-			"connectorResources=" + Stringifier.toString(connectorResources) + ", " +
+			"creationSteps=" + Stringifier.toString(creationSteps) + ", " +
 			"debuggerPort=" + debuggerPort + ", " +
-			"deleteJvmOptions=" + deleteJvmOption + ", " +
 			"directory=" + directory + ", " + 
 			"host=" + host + ", " + 
 			"httpPort=" + httpPort + ", " +
@@ -344,14 +221,10 @@ public class Domain {
 			"iiopPort=" + iiopPort + ", " +
 			"iiopsPort=" + iiopsPort + ", " +
 			"iipsmPort=" + iiopsmPort + ", " +
-			"jdbcResources=" + Stringifier.toString(jdbcResources) + ", " +
 			"jmsPort=" + jmsPort + ", " + 
-			"jmsResources" + Stringifier.toString(jmsResources) + ", " + 
 			"jmxPort=" + jmxPort + ", " + 
 			"loggingAttributes=" + Stringifier.toString(loggingAttributes) + ", " +
 			"name=" + name + ", " + 
-			"resourceAdapaters=" + Stringifier.toString(resourceAdapters) + ", " + 
-			"reuse=" + reuse + ", " +
-			"properties=" + Stringifier.toString(properties);
+			"reuse=" + reuse;
 	}
 }

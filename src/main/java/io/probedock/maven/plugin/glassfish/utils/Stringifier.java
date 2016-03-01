@@ -17,9 +17,14 @@ public class Stringifier {
 		}
 		
 		// Transform the set to array and sort by property names
+		@SuppressWarnings("unchecked")
 		T[] array = (T[]) setCollection.toArray(new Object[setCollection.size()]);
 		Arrays.sort(array);
 		
+		return toString(array);
+	}
+	
+	public static <T> String toString(T[] array) {
 		StringBuilder sb = new StringBuilder("{ ");
 		for (T item : array) {
 			sb.append(item).append(", ");

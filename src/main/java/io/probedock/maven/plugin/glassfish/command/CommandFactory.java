@@ -19,6 +19,7 @@ import io.probedock.maven.plugin.glassfish.model.JdbcResource;
 import io.probedock.maven.plugin.glassfish.model.JmsHost;
 import io.probedock.maven.plugin.glassfish.model.RedeployConfiguration;
 import io.probedock.maven.plugin.glassfish.model.ResourceAdapter;
+import io.probedock.maven.plugin.glassfish.model.UndeployConfiguration;
 
 /**
  * The command factory create the ASADMIN commands
@@ -279,12 +280,13 @@ public class CommandFactory {
 	/**
 	 * Build create JVM options command
 	 * 
-	 * @param configuration The configuration to get the JVM options to create
+	 * @param configuration The configuration
+	 * @param jvmOptions The JVM options to create
 	 * @return The command
 	 */
-	public static CommandBuilder buildCreateJvmOptionsCommand(Configuration configuration) {
+	public static CommandBuilder buildCreateJvmOptionsCommand(Configuration configuration, Set<String> jvmOptions) {
 		return create(CREATE_JVM_OPTIONS, configuration).
-			addArgument(buildJvmOptionsArgument(configuration.getDomain().getCreateJvmOptions())).
+			addArgument(buildJvmOptionsArgument(jvmOptions)).
 			setFriendlyErrorMessage("Unable to create JVM options.");
 	}
 	
@@ -316,12 +318,13 @@ public class CommandFactory {
 	/**
 	 * Build the delete JVM Options command
 	 * 
-	 * @param configuration The configuration to get the JVM options to delete
+	 * @param configuration The configuration
+	 * @param jvmOptions The JVM options to delete
 	 * @return The command
 	 */
-	public static CommandBuilder buildDeleteJvmOptionsCommand(Configuration configuration) {
+	public static CommandBuilder buildDeleteJvmOptionsCommand(Configuration configuration, Set<String> jvmOptions) {
 		return create(DELETE_JVM_OPTIONS, configuration).
-			addArgument(buildJvmOptionsArgument(configuration.getDomain().getDeleteJvmOption())).
+			addArgument(buildJvmOptionsArgument(jvmOptions)).
 			setFriendlyErrorMessage("Unable to delete JVM options.");
 	}
 	
@@ -373,16 +376,15 @@ public class CommandFactory {
 	public static CommandBuilder buildDeployCommand(Configuration configuration) {
 		return buildDeployCommand(configuration, configuration.getDeployConfiguration());
 	}
-	
+
 	/**
 	 * Build the deploy command
 	 * 
 	 * @param configuration The configuration to get the options for the deployment
+	 * @param redepConfig The redeployment configuration
 	 * @return The command
 	 */
-	public static CommandBuilder buildRedeployCommand(Configuration configuration) {
-		RedeployConfiguration redepConfig = configuration.getRedeployConfiguration();
-		
+	public static CommandBuilder buildRedeployCommand(Configuration configuration, RedeployConfiguration redepConfig) {
 		return create(DEPLOY, configuration).
 			addArgument(buildStringArgument(DEP_NAME, redepConfig.getName())).
 			addArgument(buildBooleanArgument(DEP_UPLOAD, redepConfig.getUpload())).
@@ -411,6 +413,16 @@ public class CommandFactory {
 			addArgument(buildStringArgument(DEP_FILE, redepConfig.getFile())).
 			setFriendlyErrorMessage("Unable to re-deploy the component.");
 	}
+	
+	/**
+	 * Build the deploy command
+	 * 
+	 * @param configuration The configuration to get the options for the deployment
+	 * @return The command
+	 */
+	public static CommandBuilder buildRedeployCommand(Configuration configuration) {
+		return buildRedeployCommand(configuration, configuration.getRedeployConfiguration());
+	}	
 	
 	/**
 	 * Build the set command
@@ -504,16 +516,27 @@ public class CommandFactory {
 	 * Build the un-deploy command
 	 * 
 	 * @param configuration The configuration to enrich the command
+	 * @param undeployConfiguration The undeploy configuration
 	 * @return The command
 	 */
-	public static CommandBuilder buildUndeployCommand(Configuration configuration) {
+	public static CommandBuilder buildUndeployCommand(Configuration configuration, UndeployConfiguration undeployConfiguration) {
 		return create(UNDEPLOY, configuration).
-			addArgument(buildBooleanArgument(DEP_DROP_TABLES, configuration.getUndeployConfiguration().getDropTables())).
-			addArgument(buildBooleanArgument(DEP_CASCADE, configuration.getUndeployConfiguration().getCascade())).
-			addArgument(buildStringArgument(DEP_FILE, configuration.getUndeployConfiguration().getName())).
+			addArgument(buildBooleanArgument(DEP_DROP_TABLES, undeployConfiguration.getDropTables())).
+			addArgument(buildBooleanArgument(DEP_CASCADE, undeployConfiguration.getCascade())).
+			addArgument(buildStringArgument(DEP_FILE, undeployConfiguration.getName())).
 			setFriendlyErrorMessage("Unable to undeploy the component.");
 	}
 	
+	/**
+	 * Build the un-deploy command
+	 * 
+	 * @param configuration The configuration to enrich the command
+	 * @return The command
+	 */
+	public static CommandBuilder buildUndeployCommand(Configuration configuration) {
+		return buildUndeployCommand(configuration, configuration.getUndeployConfiguration());
+	}
+
 	/**
 	 * Build a create-connector-connection-pool command
 	 * 
@@ -542,7 +565,7 @@ public class CommandFactory {
 	public static CommandBuilder buildCreateAdapterConfigCommand(Configuration configuration, ResourceAdapter resourceAdapter) {
 		return create(CREATE_RESOURCE_ADAPTER_CONFIG, configuration).
 			addArgument(buildPropertyArgument(resourceAdapter.getProperties())).
-			addArgument(buildStringArgument(RESOURCE_ADAPTER_NAME, resourceAdapter.getDeployConfig().getName())).
+			addArgument(buildStringArgument(RESOURCE_ADAPTER_NAME, resourceAdapter.getName())).
 			setFriendlyErrorMessage("Unable to configure the resource adapter.");		
 	}
 	
@@ -570,8 +593,8 @@ public class CommandFactory {
 	 */
 	public static CommandBuilder buildCreateAdminObjectCommand(Configuration configuration, AdminObject adminObject) {
 		return create(CREATE_ADMIN_OBJECT, configuration).
-			addArgument(buildStringArgument(CONNECTOR_CONNECTION_POOL_RANAME, adminObject.getRaname())).
-			addArgument(buildStringArgument(RESOURCE_TYPE, adminObject.getRestype())).
+			addArgument(buildStringArgument(CONNECTOR_CONNECTION_POOL_RANAME, adminObject.getResourceAdapterName())).
+			addArgument(buildStringArgument(RESOURCE_TYPE, adminObject.getResourceType())).
 			addArgument(buildPropertyArgument(adminObject.getProperties())).
 			addArgument(buildStringArgument(JNDI_NAME, adminObject.getJndiName())).
 			setFriendlyErrorMessage("Unable to create the connector resource.");		

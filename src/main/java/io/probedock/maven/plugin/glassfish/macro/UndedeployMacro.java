@@ -27,6 +27,5 @@ public class UndedeployMacro extends AbstractMacro {
 			
 			registerCommand(new MacroCommand(buildUndeployCommand(configuration), "Undeploying application + [" + configuration.getUndeployConfiguration().getName() + "]."));	
 		}
-		
 	}
 }

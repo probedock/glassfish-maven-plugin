@@ -19,7 +19,8 @@
 			</goals>
 		</execution>
 	</executions>
-	
+
+	<!-- Minimal configuration to deploy something on an existing domain -->
 	<configuration>
 		<glassfish>
 			<home>path/to/glassfish/home</home>
@@ -43,6 +44,16 @@
 	</configuration>
 </plugin>
 ```
+
+Take a look to this (example)[example.xml] file to have a complete list of available configuration.
+
+With this plugin, you have the following goals:
+	* create-domain
+	* start-domain
+	* stop-domain
+	* deploy
+	* redeploy
+	* undeploy
 
 ### Requirements
 
