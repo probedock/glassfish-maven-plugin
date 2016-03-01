@@ -17,6 +17,7 @@ public class Stringifier {
 		}
 		
 		// Transform the set to array and sort by property names
+		@SuppressWarnings("unchecked")
 		T[] array = (T[]) setCollection.toArray(new Object[setCollection.size()]);
 		Arrays.sort(array);
 		

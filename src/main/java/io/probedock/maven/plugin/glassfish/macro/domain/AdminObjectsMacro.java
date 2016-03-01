@@ -1,6 +1,5 @@
 package io.probedock.maven.plugin.glassfish.macro.domain;
 
-import io.probedock.maven.plugin.glassfish.macro.AbstractMacro;
 import io.probedock.maven.plugin.glassfish.macro.MacroCommand;
 import io.probedock.maven.plugin.glassfish.model.AdminObject;
 import io.probedock.maven.plugin.glassfish.model.Configuration;
@@ -20,6 +19,7 @@ public class AdminObjectsMacro extends AbstractCreationStepMacro {
 	 * Constructor
 	 * 
 	 * @param configuration The configuration
+	 * @param domainCreationStep The current domain creation step
 	 */
 	public AdminObjectsMacro(Configuration configuration, DomainCreationStep domainCreationStep) {
 		super(configuration, domainCreationStep);
